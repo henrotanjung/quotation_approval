@@ -9,6 +9,9 @@
     'description': """
 This module contains approval features of Sales Management.
     """,
+    'images' : ['images/quotation.png','images/portal_purchase.png','images/sign.png'],
+    'author': 'Henro S Tanjung',
+    'maintainer': 'Henro Tanjung',
     'depends': ['sale'],
     'data': [
         # 'security/sale_security.xml',
@@ -22,5 +25,6 @@ This module contains approval features of Sales Management.
         # 'data/sale_demo.xml',
     ],
     'installable': True,
-    'auto_install': False
+    'auto_install': False,
+    'license': 'OPL-1',
 }
