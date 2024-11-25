@@ -9,7 +9,7 @@
     'description': """
 This module contains approval features of Sales Management.
     """,
-    'images' : ['images/quotation.png','images/quotation_approval_image.png','images/sign.png'],
+    'images' : ['images/configuration_1.png','images/quotation_approval_image.png','images/configuration_2.png'],
     'author': 'Henro S Tanjung',
     'maintainer': 'Henro Tanjung',
     'depends': ['sale'],
