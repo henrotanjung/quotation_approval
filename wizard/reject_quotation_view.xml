@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="form_view_reject_quotation" model="ir.ui.view">
+            <field name="name">Reject quotation</field>
+            <field name="model">reject.quotation.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Reject quotation">
+                    <group>
+                        <field name="name" string="Reject Quotation"/>
+                    </group>
+                    
+                    <footer>
+                        <button name="submit_reject" id="reject_quotation" string="Submit" type="object"
+                            context="{'open_invoices': True}" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+
+    </record>
+    
+    <record id="action_view_reject_quotation" model="ir.actions.act_window">
+        <field name="name">Reject quotation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">reject.quotation.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>        
+        <!-- <field name="binding_model_id" ref="sale.model_sale_order" /> -->
+    </record>
+
+    <!-- <record id="view_project_task_type_delete_confirmation_wizard" model="ir.ui.view">
+        <field name="name">project.task.type.delete.wizard.form</field>
+        <field name="model">project.task.type.delete.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Delete Stage">
+                <div>
+                    <p>This will archive the stages and all the tasks they contain from the following projects:</p>
+                    <field name="project_ids" readonly="1">
+                        <tree>
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                    <p>Are you sure you want to continue?</p>
+                </div>
+                <footer>
+                    <button string="Confirm" type="object" name="action_confirm" class="btn btn-primary"/>
+                    <button string="Discard" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record> -->
+</odoo>

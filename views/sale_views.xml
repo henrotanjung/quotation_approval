@@ -13,10 +13,19 @@
                 <!-- <button name="approve_quotaton" string="Approve" type="object" attrs="{'invisible': ['|', ('state', 'not in', ['draft', 'cancel', 'done']), ('is_approver', '=', False)]}"/>
                 <button name="reject_quotation" string="Reject" type="object" attrs="{'invisible': ['|', ('state', 'not in', ['draft', 'cancel', 'done']), ('is_approver', '=', False)]}"/> -->
                 <button name="approve_quotaton" string="Approve" type="object" attrs="{'invisible': [('state', 'in', ['draft', 'cancel', 'done'])]}"/>
-                <button name="reject_quotation" string="Reject" type="object" attrs="{'invisible': [('state', 'in', ['draft', 'cancel', 'done'])]}"/>
+                
+                <button name="action_reject_quotation" string="Reject" type="object" attrs="{'invisible': [('state', 'in', ['draft', 'cancel', 'done'])]}"/>
+                
             </xpath>
             <xpath expr="//button[@name='action_draft']" position="attributes">
                 <attribute name="states">cancel,reject</attribute>
+            </xpath>
+
+            <xpath expr="//group[@name='sale_shipping']" position="after">
+                <group name="Rejection">
+                    <label for="reject_reason" string="Reject info"/>
+                    <field name="reject_reason" string="Reject Quotation"/>
+                </group>
             </xpath>
 
 

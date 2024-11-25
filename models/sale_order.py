@@ -25,6 +25,8 @@ class SaleOrder(models.Model):
         selection_add=[('first_approval', 'Waiting 1st Approval'), ('second_approval', 'Waiting 2nd Approval'), ('reject', 'Reject')],
     )
     
+    reject_reason = fields.Text(string='Reject Reason')
+    
     # is_approver = fields.Boolean(compute="_get_approver")
     
     # is_first_approver = fields.Boolean(compute="_get_first_approver")
@@ -44,23 +46,35 @@ class SaleOrder(models.Model):
     def approve_quotaton(self):
         approver = self._get_approver()
         if self.state == 'first_approval':
-            raise UserError(_(approver.level))
-            if approver and approver.level != 'first_approval':
-                raise UserError(_("You don't have access to confirm this quotation"))
+            if not approver or approver.level != 'first_approval':
+                raise UserError(_("You don't have access to approve this quotation"))
             self.write({'state': 'second_approval'})
             return
             
         elif self.state == 'second_approval':
             
-            if approver and approver.level != 'second_approval':
-                raise UserError(_("You don't have access to confirm this quotation"))
-            # self.write({'state': 'sale'})
+            if not approver or approver.level != 'second_approval':
+                raise UserError(_("You don't have access to approve this quotation"))
+            
             res = super(SaleOrder, self).action_confirm()
         
             return res
     
-    def reject_quotation(self):
-        return
+    def action_reject_quotation(self):
+        
+        action = self.env.ref('quotation_approval.action_view_reject_quotation').read()[0]
+        return action
+        
+        # return {
+        #     'name': _('Confirmation'),
+        #     'view_mode': 'form',
+        #     'res_model': 'reject.quotation.wizard',
+        #     'views': [(self.env.ref('quotation_approval.action_view_reject_quotation').id, 'form')],
+        #     'type': 'ir.actions.act_window',
+        #     'res_id': self.id,
+        #     'target': 'new',
+        #     'context': self.env.context,
+        # }
     
     def _get_approver(self):
         emp_obj = self.env['hr.employee']

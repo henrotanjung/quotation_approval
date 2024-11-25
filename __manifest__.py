@@ -12,8 +12,9 @@ This module contains approval features of Sales Management.
     'depends': ['sale'],
     'data': [
         # 'security/sale_security.xml',
+        'wizard/reject_quotation_view.xml',
         'security/ir.model.access.csv',
-        'views/sale_views.xml'
+        'views/sale_views.xml',
         
     ],
     'demo': [
